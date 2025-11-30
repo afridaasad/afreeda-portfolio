@@ -1,77 +1,128 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-export default function Header() {
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Contact", href: "#contact" },
+];
+
+export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       {/* NAVBAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[rgba(6,13,30,0.45)] border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           
-          {/* Logo */}
-          <h1 className="text-xl font-bold tracking-wide text-[var(--accent)]">
+          {/* LOGO / NAME */}
+          <Link 
+            href="/" 
+            className="text-white font-semibold text-lg tracking-wide"
+          >
             Afreeda Asad
-          </h1>
+          </Link>
 
-          {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-8 text-sm">
-            <a href="#about" className="hover:text-[var(--cyan)]">About</a>
-            <a href="#skills" className="hover:text-[var(--cyan)]">Skills</a>
-            <a href="#experience" className="hover:text-[var(--cyan)]">Experience</a>
-            <a href="#projects" className="hover:text-[var(--cyan)]">Projects</a>
-            <a href="#certs" className="hover:text-[var(--cyan)]">Certifications</a>
-            <a href="#contact" className="hover:text-[var(--cyan)]">Contact</a>
+          {/* DESKTOP MENU */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-gray-300 hover:text-white transition text-[15px]"
+              >
+                {item.label}
+              </a>
+            ))}
 
-            <a
-              href="/resume.pdf"
-              className="px-4 py-2 border border-[var(--accent)] rounded-lg hover:bg-[var(--accent)] hover:text-black transition"
+            <Link
+              href="/Afreeda_resume.pdf"
+              target="_blank"
+              className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#00A9FF] to-[#00E0FF] text-[#001] font-semibold shadow-md hover:shadow-cyan-500/40 transition"
             >
               Resume
-            </a>
-          </nav>
+            </Link>
+          </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE MENU BUTTON */}
           <button
-            className="md:hidden text-2xl"
             onClick={() => setOpen(true)}
+            className="md:hidden text-white text-2xl"
           >
             ☰
           </button>
         </div>
-      </header>
+      </nav>
 
-      {/* MOBILE SLIDE MENU */}
-      {open && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-md z-50 flex justify-end">
-          <div className="w-64 bg-[var(--bg-secondary)] h-full p-6 flex flex-col gap-6 shadow-xl">
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-[rgba(0,0,0,0.65)] backdrop-blur-sm z-50"
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-            <button
-              className="text-right text-xl mb-4"
-              onClick={() => setOpen(false)}
-            >
-              ✕
-            </button>
+      {/* MOBILE MENU PANEL */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ y: -200 }}
+            animate={{ y: 0 }}
+            exit={{ y: -200 }}
+            transition={{ type: "spring", stiffness: 120, damping: 15 }}
+            className="fixed top-0 left-0 right-0 bg-[#060D1E] border-b border-white/10 px-6 py-6 z-[60] md:hidden"
+          >
+            {/* CLOSE BUTTON */}
+            <div className="flex justify-between items-center">
+              <span className="text-white text-lg font-semibold">
+                Afreeda Asad
+              </span>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-white text-2xl"
+              >
+                ×
+              </button>
+            </div>
 
-            <a href="#about" onClick={() => setOpen(false)}>About</a>
-            <a href="#skills" onClick={() => setOpen(false)}>Skills</a>
-            <a href="#experience" onClick={() => setOpen(false)}>Experience</a>
-            <a href="#projects" onClick={() => setOpen(false)}>Projects</a>
-            <a href="#certs" onClick={() => setOpen(false)}>Certifications</a>
-            <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
+            <div className="mt-6 flex flex-col gap-5">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="text-gray-300 text-lg hover:text-white transition"
+                >
+                  {item.label}
+                </a>
+              ))}
 
-            <a
-              href="/resume.pdf"
-              className="px-4 py-2 border border-[var(--accent)] rounded-lg text-center mt-4"
-            >
-              Resume
-            </a>
-          </div>
-        </div>
-      )}
+              <a
+  href="/Afreeda_resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#00A9FF] to-[#00E0FF] text-[#001] font-semibold shadow-md hover:shadow-cyan-500/40 transition"
+>
+  Resume
+</a>
+
+
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

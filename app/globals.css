@@ -1,7 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* custom theme */
 :root {
   --bg-primary: #0A0F1F;
   --bg-secondary: #0F162A;
@@ -15,5 +14,6 @@
 html, body {
   background: var(--bg-primary);
   color: var(--text);
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Inter, sans-serif;
+  scroll-behavior: smooth;
 }
