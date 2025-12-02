@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic";
 
-const Hero = dynamic(() => import("./components/Hero"), { ssr: true });
-const About = dynamic(() => import("./components/About"), { ssr: true });
-const Skills = dynamic(() => import("./components/Skills"), { ssr: true });
-const Experience = dynamic(() => import("./components/Experience"), { ssr: true });
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+
 
 
 export default function Home() {
