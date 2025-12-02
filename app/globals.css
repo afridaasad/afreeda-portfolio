@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* custom theme */
+:root {
+  --bg-primary: #0A0F1F;
+  --bg-secondary: #0F162A;
+  --card: #121C32;
+  --accent: #4F8CFF;
+  --cyan: #00E5FF;
+  --text: #F1F5F9;
+  --muted: #94A3B8;
+}
+
+html, body {
+  background: var(--bg-primary);
+  color: var(--text);
+  font-family: Inter, sans-serif;
+  scroll-behavior: smooth;
+}
