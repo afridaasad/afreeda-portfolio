@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+
 
 /* custom theme */
 :root {
@@ -17,3 +21,4 @@ html, body {
   font-family: Inter, sans-serif;
   scroll-behavior: smooth;
 }
+
