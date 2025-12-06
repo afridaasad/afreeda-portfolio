@@ -118,7 +118,7 @@ export default function Hero() {
           className="flex justify-center md:justify-end"
         >
           <div className="relative w-[230px] h-[230px] md:w-[310px] md:h-[310px] rounded-full overflow-hidden border-4 border-cyan-400 shadow-[0_0_40px_#00e0ff8c]">
-            <Image src="/me.jpg" alt="Afreeda Asad" fill className="object-cover" />
+            <Image src="/me.png" alt="Afreeda Asad" fill className="object-cover" />
           </div>
         </motion.div>
       </div>
