@@ -20,18 +20,18 @@ export default function Navbar() {
     <>
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[rgba(6,13,30,0.45)] border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-4 sm:px-6 flex items-center justify-between">
           
           {/* LOGO / NAME */}
           <Link 
             href="/" 
-            className="text-white font-semibold text-lg tracking-wide"
+            className="text-white font-semibold text-lg tracking-wide whitespace-nowrap"
           >
             Afreeda Asad
           </Link>
 
           {/* DESKTOP MENU */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
@@ -45,7 +45,7 @@ export default function Navbar() {
             <Link
               href="/Afreeda_resume.pdf"
               target="_blank"
-              className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#00A9FF] to-[#00E0FF] text-[#001] font-semibold shadow-md hover:shadow-cyan-500/40 transition"
+              className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#00A9FF] to-[#00E0FF] text-[#001] font-semibold shadow-md hover:shadow-cyan-500/40 transition whitespace-nowrap"
             >
               Resume
             </Link>
@@ -54,7 +54,7 @@ export default function Navbar() {
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setOpen(true)}
-            className="md:hidden text-white text-2xl"
+            className="md:hidden text-white text-2xl h-8 flex items-center whitespace-nowrap"
           >
             ☰
           </button>
@@ -91,7 +91,7 @@ export default function Navbar() {
               </span>
               <button
                 onClick={() => setOpen(false)}
-                className="text-white text-2xl"
+                className="text-white text-2xl h-8 flex items-center"
               >
                 ×
               </button>

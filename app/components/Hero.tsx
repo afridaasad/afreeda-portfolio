@@ -56,7 +56,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.08]"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-4 md:pt-8 grid lg:grid-cols-2 gap-10 items-center">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-4 md:pt-8 grid md:grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* LEFT SIDE CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ export default function Hero() {
           </p>
 
           {/* BUTTONS */}
-          <div className="flex items-center gap-4 mt-8">
+          <div className="flex flex-wrap items-center gap-4 mt-8">
             <a
               href="/Afreeda_resume.pdf"
               download="Afreeda_Asad_Resume.pdf"

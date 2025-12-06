@@ -20,5 +20,7 @@ html, body {
   color: var(--text);
   font-family: Inter, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden; /* patch */
 }
+
 
