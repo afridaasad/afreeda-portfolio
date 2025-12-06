@@ -1,10 +1,51 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Hero() {
+  const roles = [
+    "Full Stack Developer",
+    "Backend Developer",
+    "QA Analyst",
+    "Software Engineer",
+    "Manual Tester",
+    "Automation Tester",
+  ];
+
+  const [display, setDisplay] = useState("");
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [speed, setSpeed] = useState(80);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const currentRole = roles[roleIndex % roles.length];
+
+    if (!isDeleting) {
+      timeout = setTimeout(() => {
+        setDisplay(currentRole.slice(0, display.length + 1));
+      }, speed);
+    } else {
+      timeout = setTimeout(() => {
+        setDisplay(currentRole.slice(0, display.length - 1));
+      }, speed / 2);
+    }
+
+    if (!isDeleting && display === currentRole) {
+      timeout = setTimeout(() => setIsDeleting(true), 900);
+    }
+
+    if (isDeleting && display === "") {
+      setIsDeleting(false);
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [display, isDeleting, roleIndex]); 
+
   return (
     <section
       id="home"
@@ -16,7 +57,6 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 pt-32 md:pt-40 grid lg:grid-cols-2 gap-10 items-center">
-        
         {/* LEFT SIDE CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,8 +73,15 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl font-semibold text-gray-300 mt-3">
-            Full Stack Developer
+          {/* Typewriter role */}
+          <p className="text-lg md:text-xl font-semibold text-gray-300 mt-3 h-[1.6rem]">
+            <span className="inline-block mr-2">{display}</span>
+            <span
+              className={`inline-block w-1 h-6 align-middle ml-1 bg-cyan-300 ${
+                isDeleting ? "opacity-30" : "opacity-100"
+              } animate-pulse`}
+              aria-hidden="true"
+            />
           </p>
 
           <p className="text-gray-300 mt-5 max-w-lg leading-relaxed text-[15px] md:text-base">
@@ -47,13 +94,12 @@ export default function Hero() {
           {/* BUTTONS */}
           <div className="flex items-center gap-4 mt-8">
             <a
-  href="/Afreeda_resume.pdf"
-  download="Afreeda_Asad_Resume.pdf"
-  className="px-6 py-3 text-[#001] bg-gradient-to-r from-[#00A9FF] to-[#00E0FF] rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/40 transition"
->
-  Download Resume
-</a>
-
+              href="/Afreeda_resume.pdf"
+              download="Afreeda_Asad_Resume.pdf"
+              className="px-6 py-3 text-[#001] bg-gradient-to-r from-[#00A9FF] to-[#00E0FF] rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/40 transition"
+            >
+              Download Resume
+            </a>
 
             <a
               href="#projects"
@@ -72,12 +118,7 @@ export default function Hero() {
           className="flex justify-center md:justify-end"
         >
           <div className="relative w-[230px] h-[230px] md:w-[310px] md:h-[310px] rounded-full overflow-hidden border-4 border-cyan-400 shadow-[0_0_40px_#00e0ff8c]">
-            <Image
-              src="/me.jpg" 
-              alt="Afreeda Asad"
-              fill
-              className="object-cover"
-            />
+            <Image src="/me.jpg" alt="Afreeda Asad" fill className="object-cover" />
           </div>
         </motion.div>
       </div>
