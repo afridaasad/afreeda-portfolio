@@ -8,7 +8,7 @@ export default function ExperienceSection() {
     {
       role: "Software Engineer",
       company: "Codysssey",
-      year: "2023 - Present",
+      year: "Oct 2025 - Dec, 2025",
       points: [
         "Developed full-stack web applications using Node.js, React, and MongoDB",
         "Implemented REST APIs with JWT authentication and Razorpay payment integration",
