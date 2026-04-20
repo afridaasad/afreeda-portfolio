@@ -6,6 +6,16 @@ import Image from "next/image";
 export default function ExperienceSection() {
   const experiences = [
     {
+      role: "AI Engineer Trainee",
+      company: "Palcode.ai",
+      year: "April 2026 - Present",
+      points: [
+        "Contribute to building and refining AI-driven applications, adapting solutions for different domains and use cases",
+        "Support backend development through API creation, data handling, and system integrations",
+        "Assist in testing, debugging, and deploying services to ensure performance and reliability"
+      ],
+    },
+    {
       role: "Software Engineer",
       company: "Codysssey",
       year: "Oct 2025 - Dec, 2025",
